@@ -21,7 +21,7 @@ Running the Demo
 
 Maintenance Operations
 
-1) pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo.
+1) maint-scripts/pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo.
 2) maint-scripts/remove_images.sh will delete the local images 
 3) maint-scripts/remove_images_volumes.sh will remove the container images and the persistent volumes resetting the demo software
 
