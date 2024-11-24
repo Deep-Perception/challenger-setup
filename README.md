@@ -2,27 +2,61 @@
 
 ## System Requirements:
 
-1) Ubuntu 24.04 LTS Desktop
-2) i5 or better CPU to run CPU inference portion of the Demo
-3) One Hailo-8 AI accelerator (no kernel module installed, our scripts will install the correct version)
-4) 4 video sources consisting of any combination of ONVIF cameras, direct RTSP links or directly attached USB cameras. 1920x1080 30FPS sources preferred.
-5) System that supports VA-API h264 encode and decode (Most Intel and AMD integrated and discrete graphics cards supported)  
+1. Ubuntu 24.04 LTS Desktop
+2. i5 or better CPU to run CPU inference portion of the Demo
+3. One Hailo-8 AI accelerator (no kernel module installed, our scripts will install the correct version)
+4. 4 video sources consisting of any combination of ONVIF cameras, direct RTSP links or directly attached USB cameras. 1920x1080 30FPS sources preferred.
+5. System that supports VA-API h264 encode and decode (Most Intel and AMD integrated and discrete graphics cards supported)  
 
 ## Initial Setup on clean Ubuntu 24.04 LTS Desktop Installation
 
-1) Run initial-setup/install_prereqs.sh and reboot when  prompted
-2) Run initial-setup/add_gcr.sh with service_account.json file provided separately
-3) Optional: Run initial-setup/find_axis.sh to find Axis cameras on the same subnet as the demo system
+1. Clone this repo on to the demo machine
+2. Run initial-setup/install_prereqs.sh and reboot when  prompted
+3. Copy separately provided service_account.json into **initial_setup** folder
+4. Run initial-setup/add_gcr.sh with service_account.json file provided separately
+5. Optional: Run initial-setup/find_axis.sh to find Axis cameras on the same subnet as the demo system
 
 ## Running the Demo
 
-1) Run start.sh to start the demo software, containers will pull from private registry first time the script is run.
-2) Run stop.sh to stop the demo software
+1. Run start.sh to start the demo software, containers will pull from private registry first time the script is run.
+2. Run stop.sh to stop the demo software
 
 ## Maintenance Operations
 
-1) maint-scripts/pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo.
-2) maint-scripts/remove_images.sh will delete the local images 
-3) maint-scripts/remove_images_volumes.sh will remove the container images and the persistent volumes resetting the demo software
+1. maint-scripts/pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo.
+2. maint-scripts/remove_images.sh will delete the local images 
+3. maint-scripts/remove_images_volumes.sh will remove the container images and the persistent volumes resetting the demo software
 
 # Demo Configuration
+
+The WebUI can be access on port 8082 via localhost on the same machine or by IP address from any system that has network connectivity.
+
+## Add Cameras
+
+The camera name that is first alphabetically and numerically will be used for the CPU live view and to build the 2x2 grid for Hailo mode. It is recommended to use "<number> -" nameing to control which camera is used. 
+
+Adding up to 4 cameras is supported. Cameras can be deleted, renamed and disabled from the camera setup screen.
+
+![Add camera screen](assets/add_camera.png)
+
+## Add ONVIF Camera
+
+Enter the camera name, IP address and ONVIF credential to add an ONVIF compliant camera. 
+
+![Add ONVIF Source](assets/onvif.png)
+
+## Add RTSP Source
+
+Any RTSP source can be directly added as a camera. Enter the full URL including any necessary credentials and port information.
+
+![Add Direct RTSP Source](assets/direct_link.png)
+
+## Add USB Camera 
+
+Select an available directly attached USB camera from the drop down list.
+
+## Live View
+
+Live view will show up to 4 cameras running at the same time running both the object detection and classifier model. Switching to CPU mode will only show the first camera in the live view disply only running the object detection model. Use the toggle switch to switch between CPU and Hailo mode, it may take several secondds for the switch to occur. 
+
+![Live View](assets/live_view.png)
