@@ -92,4 +92,8 @@ Navigate to the ONVIF  page and create an ONVIF account that has media profile a
 ![Set Axis ONVIF account](assets/axis_onvif.png)
 
 
+# Scripts for offline container loading
 
+maint-scripts/download_images.sh will pull the images and create tar files in docker_images folder. The entire challenger-setup directory can then packaged up and deployed on an offline system. Use "tar -cf challenger-setup.tar challenger-setup/" to create the tar file.
+
+To load the images, run maint-scripts/load_images.sh on the target system.
