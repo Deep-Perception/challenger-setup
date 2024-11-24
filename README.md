@@ -33,7 +33,7 @@ The WebUI can be access on port 8082 via localhost on the same machine or by IP 
 
 ## Add Cameras
 
-The camera name that is first alphabetically and numerically will be used for the CPU live view and to build the 2x2 grid for Hailo mode. It is recommended to use "Number -" nameing to control which camera is used. 
+The camera name that is first alphabetically and numerically will be used for the CPU live view and to build the 2x2 grid for Hailo mode. It is recommended to use "Number -" naming to control which camera is used. 
 
 Adding up to 4 cameras is supported. Cameras can be deleted, renamed and disabled from the camera setup screen.
 
