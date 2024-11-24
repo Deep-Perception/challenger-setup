@@ -69,6 +69,8 @@ The Axis camera will DHCP an address by default. If a DHCP server is not availab
 
 Create the default account on the camera. These credentials will be used to further configure the camera.
 
+![Set Axis account](assets/axis_account.png)
+
 ## Configure camera network settings
 
 Connect to the camera, log in and navigate to the network settings page. Configure for static IP address is desired.
@@ -87,7 +89,7 @@ Navigate to the time settings page and configure a NTP server if available. Othe
 
 Navigate to the ONVIF  page and create an ONVIF account that has media profile access. These credentials will be used in the demo app to connect to the camera.
 
-![Set Axis ONVIF account](assets/axis_ONVIF.png)
+![Set Axis ONVIF account](assets/axis_onvif.png)
 
 
 
