@@ -3,7 +3,7 @@
 ## System Requirements:
 
 1. Ubuntu 24.04 LTS Desktop
-2. i5 or better CPU to run CPU inference portion of the Demo
+2. Intel i5 or better CPU to run CPU inference portion of the Demo
 3. One Hailo-8 AI accelerator (no kernel module installed, our scripts will install the correct version)
 4. 4 video sources consisting of any combination of ONVIF cameras, direct RTSP links or directly attached USB cameras. 1920x1080 30FPS sources preferred.
 5. System that supports VA-API h264 encode and decode (Most Intel and AMD integrated and discrete graphics cards supported)  
@@ -18,18 +18,18 @@
 
 ## Running the Demo
 
-1. Run start.sh to start the demo software, containers will pull from private registry first time the script is run.
+1. Run start.sh to start the demo software, containers will pull from private registry first time the script is run
 2. Run stop.sh to stop the demo software
 
 ## Maintenance Operations
 
-1. maint-scripts/pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo.
+1. maint-scripts/pull_latest.sh will stop the demo and pull the latest container images. Use start.sh to restart the demo
 2. maint-scripts/remove_containers.sh will delete the local images 
 3. maint-scripts/remove_containers_volumes.sh will remove the container images and the persistent volumes resetting the demo software
 
 # Demo Configuration
 
-The WebUI can be access on port 8082 via localhost on the same machine or by IP address from any system that has network connectivity.
+The WebUI can be accessed on port 8082 via localhost on the same machine or by IP address from any system that has network connectivity.
 
 ## Add Cameras
 
