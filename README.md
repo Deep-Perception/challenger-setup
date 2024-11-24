@@ -20,6 +20,7 @@
 
 1. Run start.sh to start the demo software, containers will pull from private registry first time the script is run
 2. Run stop.sh to stop the demo software
+3. Open Chrome and navigate to http://localhost:8082 (F11 can be used to put Chrome into full screen kiosk mode)
 
 ## Maintenance Operations
 
