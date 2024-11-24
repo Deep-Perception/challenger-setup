@@ -55,6 +55,8 @@ Any RTSP source can be directly added as a camera. Enter the full URL including 
 
 Select an available directly attached USB camera from the drop down list.
 
+![Add USB Camera](assets/usb.png)
+
 ## Live View
 
 Live view will show up to 4 cameras running at the same time running both the object detection and classifier model. Switching to CPU mode will only show the first camera in the live view disply only running the object detection model. Use the toggle switch to switch between CPU and Hailo mode, it may take several secondds for the switch to occur. 
