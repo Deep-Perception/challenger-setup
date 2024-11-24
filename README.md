@@ -83,4 +83,11 @@ Navigate to the time settings page and configure a NTP server if available. Othe
 
 ![Set Axis Custom Time](assets/axis_custom_time.png)
 
+## Add ONVIF account
+
+Navigate to the ONVIF  page and create an ONVIF account that has media profile access. These credentials will be used in the demo app to connect to the camera.
+
+![Set Axis ONVIF account](assets/axis_ONVIF.png)
+
+
 
