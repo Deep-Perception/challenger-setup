@@ -62,3 +62,25 @@ Select an available directly attached USB camera from the drop down list.
 Live view will show up to 4 cameras running at the same time running both the object detection and classifier model. Switching to CPU mode will only show the first camera in the live view disply only running the object detection model. Use the toggle switch to switch between CPU and Hailo mode, it may take several secondds for the switch to occur. 
 
 ![Live View](assets/live_view.png)
+
+# Axis camera configuration
+
+The Axis camera will DHCP an address by default. If a DHCP server is not available the camera will set itself to 192.168.0.90. You can use the script initial-setup/find_axis.sh to help find the address of any Axis camera on the same subnet. One you know the camera IP address, connect to it with a web browser.
+
+Create the default account on the camera. These credentials will be used to further configure the camera.
+
+## Configure camera network settings
+
+Connect to the camera, log in and navigate to the network settings page. Configure for static IP address is desired.
+
+![Set Axis IP](assets/axis_network.png)
+
+## Configure camera time settings
+
+Navigate to the time settings page and configure a NTP server if available. Otherwise, use custom time and synchronize the camera's time with the browser.
+
+![Set Axis NTP](assets/axis_ntp.png)
+
+![Set Axis Custom Time](assets/axis_custom_time.png)
+
+
