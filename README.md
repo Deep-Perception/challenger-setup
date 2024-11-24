@@ -12,7 +12,7 @@
 
 1. Clone this repo on to the demo machine
 2. Run initial-setup/install_prereqs.sh and reboot when  prompted
-3. Copy separately provided service_account.json into **initial_setup** folder
+3. Copy separately provided service_account.json into **initial-setup** folder
 4. Run initial-setup/add_gcr.sh which uses the service_account.json file to enable docker to pull from a private registry
 5. Optional: Run initial-setup/find_axis.sh to find Axis cameras on the same subnet as the demo system. Axis camera setup instructions are further down in this document. 
 
