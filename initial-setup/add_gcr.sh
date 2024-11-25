@@ -36,6 +36,6 @@ fi
 #
 
 gcloud auth activate-service-account --key-file=service_account.json
-gcloud auth configure-docker
+gcloud auth configure-docker us-central1-docker.pkg.dev
 
 docker run us-central1-docker.pkg.dev/deepperception-challenger/demo1/hello-world:latest
