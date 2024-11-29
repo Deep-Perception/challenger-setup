@@ -4,7 +4,7 @@
 
 1. Ubuntu 24.04 LTS Desktop
 2. High core count Intel i5 or better CPU to run CPU inference portion of the Demo. Known to work on a Ultra 7 155H, i7-14700T and i7-14700F.
-3. One Hailo-8 AI accelerator (no kernel module installed, our scripts will install the correct version)
+3. One Hailo-8 AI accelerator (4.19.0 Kernel Module, our scripts will install the correct version)
 4. 4 video sources consisting of any combination of ONVIF cameras, direct RTSP links and directly attached USB cameras. 1920x1080 30FPS sources preferred.
 5. System that supports VA-API h264 encode and decode (Most Intel and AMD integrated and discrete graphics cards supported)  
 
