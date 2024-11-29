@@ -48,7 +48,7 @@ services:
     volumes:
       # NOTE: the mounted location needs to match --cache_dir
       - edge-config-cache:/tmp/cache
-    restart: always
+    restart: unless-stopped 
   events_server:
     image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/events-server:latest
     network_mode: host
@@ -80,7 +80,7 @@ services:
     command: [
       -logtostderr
     ]
-    restart: always
+    restart: unless-stopped 
 
   iris_server:
     image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/iris-server:latest
@@ -123,7 +123,7 @@ services:
       - "110"
       - "44"
       - "46"
-    restart: always
+    restart: unless-stopped 
     depends_on:
       - webrtc
 
@@ -156,7 +156,7 @@ services:
     image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/webrtc:latest
     ports:
       - "7777:7777"
-    restart: always
+    restart: unless-stopped
 
   # Metrics and monitoring part of the deployment
   influxdb:
