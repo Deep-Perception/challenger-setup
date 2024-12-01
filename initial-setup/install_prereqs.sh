@@ -46,4 +46,6 @@ yes | sudo dpkg -i hailort-pcie-driver_4.19.0_all.deb
 #
 sudo apt-get install nmap net-tools openssh-server vim -y
 
+sudo ./increase_fd_limits.sh
+
 echo -e "\n\nReboot Needed to Complete Hailo Driver Install!!!\n\n"
