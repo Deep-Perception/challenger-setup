@@ -26,7 +26,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   edge_config:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/edge-config:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/edge-config:v0.9.1
     network_mode: host
     depends_on:
       db:
@@ -50,7 +50,7 @@ services:
       - edge-config-cache:/tmp/cache
     restart: unless-stopped 
   events_server:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/events-server:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/events-server:v0.9.1
     network_mode: host
     ports:
       - "50053:50053"
@@ -70,7 +70,7 @@ services:
     ]
 
   usb_cameras:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/usb-cameras:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/usb-cameras:v0.9.1
     network_mode: host
     privileged: true
     ports:
@@ -83,7 +83,7 @@ services:
     restart: unless-stopped 
 
   iris_server:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/iris-server:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/iris-server:v0.9.1
     network_mode: host
     privileged: true
     ports:
@@ -128,7 +128,7 @@ services:
       - webrtc
 
   dp-envoy:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/envoy-proxy:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/envoy-proxy:v0.9.1
     network_mode: host
     ports:
       - "8080:8080"
@@ -141,7 +141,7 @@ services:
     depends_on:
       - edge_config
   frontend:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/frontend:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/frontend:v0.9.1
     network_mode: host
     ports:
       - "8082:8082"
@@ -153,14 +153,14 @@ services:
 
   webrtc:
     network_mode: host
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/webrtc:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/webrtc:v0.9.1
     ports:
       - "7777:7777"
     restart: unless-stopped
 
   # Metrics and monitoring part of the deployment
   influxdb:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/influxdb:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/influxdb:v0.9.1
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_ADMIN_USER=admin
@@ -173,7 +173,7 @@ services:
       - monitoring_net
 
   telegraf:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/telegraf:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/telegraf:v0.9.1
     privileged: true
     depends_on:
       - influxdb
@@ -193,7 +193,7 @@ services:
       - monitoring_net
 
   grafana:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/grafana:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/grafana:v0.9.1
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -208,7 +208,7 @@ services:
       - monitoring_net
 
   hailo_monitor:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/hailo_monitor:v0.9.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/hailo_monitor:v0.9.1
     # So hailo monitor files can be read from iris
     privileged: true
     volumes:
