@@ -81,7 +81,7 @@ Connect to the camera, log in and navigate to the network settings page. Configu
 
 ## Configure camera time settings
 
-Navigate to the time settings page and configure a NTP server if available. Otherwise, use custom time and synchronize the camera's time with the browser.
+Navigate to the time settings page and configure a NTP server if available. Otherwise, select custom time and synchronize the camera's time with the browser. Note, if the camera does not have a synchronized time, it will fail to connect provide a video stream. Please ensure the camera time is valid before proceeding. 
 
 ![Set Axis NTP](assets/axis_ntp.png)
 
