@@ -48,4 +48,11 @@ sudo apt-get install nmap net-tools openssh-server vim -y
 
 sudo ./increase_fd_limits.sh
 
+#
+#Custom udev rule to work around onboard camera enumeration issue
+#
+sudo cp 99-custom-camera.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
 echo -e "\n\nReboot Needed to Complete Hailo Driver Install!!!\n\n"
