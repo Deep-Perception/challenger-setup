@@ -56,6 +56,14 @@ Any RTSP source can be directly added as a camera. Enter the full URL including 
 
 ## Add USB Camera 
 
+USB cameras must support 1080p30 or 1080p60 MJPEG mode to work. Most 1080p or 4k webcams should work, the following:
+
+- HP 4k Streaming Webcam
+- HP 620/625 Webcam
+- HP 430/435 Webcam
+- Logitech C920
+- Logitech BRIO 4k
+
 Select an available directly attached USB camera from the drop down list.
 
 ![Add USB Camera](assets/usb.png)
