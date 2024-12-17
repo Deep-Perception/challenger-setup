@@ -26,7 +26,7 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
   edge_config:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/edge-config:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/edge-config:challenger-v1.1.0
     network_mode: host
     depends_on:
       db:
@@ -48,9 +48,9 @@ services:
     volumes:
       # NOTE: the mounted location needs to match --cache_dir
       - edge-config-cache:/tmp/cache
-    restart: unless-stopped 
+    restart: always
   events_server:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/events-server:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/events-server:challenger-v1.1.0
     network_mode: host
     ports:
       - "50053:50053"
@@ -70,7 +70,7 @@ services:
     ]
 
   usb_cameras:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/usb-cameras:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/usb-cameras:challenger-v1.1.0
     network_mode: host
     privileged: true
     ports:
@@ -80,10 +80,10 @@ services:
     command: [
       -logtostderr
     ]
-    restart: unless-stopped 
+    restart: always
 
   iris_server:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/iris-server:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/iris-server:challenger-v1.1.0
     network_mode: host
     privileged: true
     ports:
@@ -95,8 +95,19 @@ services:
       - EVENTS_SERVER_HOST=0.0.0.0
       # TODO(chris): added for X11
       - DISPLAY=$DISPLAY
-      # - GST_DEBUG=*:6
+      # - GST_DEBUG=*:4
       - HAILO_MONITOR=1
+      # Colors for bounding box and text overlay on the visualizer stream.
+      # Depending on the demo environment, you may want to change the color to
+      # make the detections standout. Recommended values are:
+      # - Green: 0,255,0
+      # - White: 255,255,255
+      # - Red: 255,0,0
+      # - Light blue: 34,177,227
+      # - Dark blue: 50,67,128
+      - IRIS_OVERLAY_COLOR_RGB=0,255,0
+      # FPS for CPU mode. Default is 10 FPS if not specified
+      - IRIS_CPU_FPS=12
 
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
@@ -123,12 +134,12 @@ services:
       - "110"
       - "44"
       - "46"
-    restart: unless-stopped 
+    restart: always
     depends_on:
       - webrtc
 
   dp-envoy:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/envoy-proxy:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/envoy-proxy:challenger-v1.1.0
     network_mode: host
     ports:
       - "8080:8080"
@@ -138,10 +149,11 @@ services:
       - ENVOY_UID=0
       - DP_EDGE_CONFIG_HOSTNAME=0.0.0.0
       - DP_EVENTS_SERVER_HOSTNAME=0.0.0.0
+      - DP_IRIS_SERVER_HOSTNAME=0.0.0.0
     depends_on:
       - edge_config
   frontend:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/frontend:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/frontend:challenger-v1.1.0
     network_mode: host
     ports:
       - "8082:8082"
@@ -153,14 +165,14 @@ services:
 
   webrtc:
     network_mode: host
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/webrtc:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/webrtc:challenger-v1.1.0
     ports:
       - "7777:7777"
-    restart: unless-stopped
+    restart: always
 
   # Metrics and monitoring part of the deployment
   influxdb:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/influxdb:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/influxdb:challenger-v1.1.0
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_ADMIN_USER=admin
@@ -173,7 +185,7 @@ services:
       - monitoring_net
 
   telegraf:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/telegraf:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/telegraf:challenger-v1.1.0
     privileged: true
     depends_on:
       - influxdb
@@ -193,7 +205,7 @@ services:
       - monitoring_net
 
   grafana:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/grafana:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/grafana:challenger-v1.1.0
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -208,7 +220,7 @@ services:
       - monitoring_net
 
   hailo_monitor:
-    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/hailo_monitor:challenger-v1.0.0
+    image: us-central1-docker.pkg.dev/deepperception-challenger/demo1/hailo_monitor:challenger-v1.1.0
     # So hailo monitor files can be read from iris
     privileged: true
     volumes:
