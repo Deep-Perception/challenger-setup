@@ -108,3 +108,11 @@ Navigate to the ONVIF  page and create an ONVIF account that has media profile a
 maint-scripts/download_images.sh will pull the images and create tar files in docker_images folder. The entire challenger-setup directory can then packaged up and deployed on an offline system. Use "tar -cf challenger-setup.tar challenger-setup/" to create the tar file.
 
 To load the images, run maint-scripts/load_images.sh on the target system.
+
+# Troubleshooting
+
+The on-board Tekken USB camera is known to have issues where it does not generate frames at the requested rate. This will result in the video for this camera feed slowing down and skipping frames. The low light detection mechanism triggers this issue but it has also been seen when the camera is running under normal operations for 10+ minutes.
+
+USB cameras may experience frame rate issues if there are problems with the USB connection. Verify the cameras are connected to the correct USB hub by running the command "lsusb". Camera bandwidth can also be viewed by running "sudo modprobe usbmon" and then running "usbtop". If cameras are having issues, you may see traffic from devices not listed by "lsusb".
+
+If you can connect to the Axis camera but it will not stream video, confirm the time has been synced from the browser. Review the Axis camera setup section above for more details. 
